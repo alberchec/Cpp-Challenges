@@ -1,8 +1,7 @@
 #include <iostream>
 
 int main(){
-	std::string number_names[] = {"one","two","three","four","five",
-								  "six","seven","eight","nine"};
+	std::string number_names[] = {"one","two","three","four","five","six","seven","eight","nine"};
 	int init, final;
 	std::cin >> init >> final;
 
