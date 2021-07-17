@@ -34,25 +34,29 @@ class LRUCache : public Cache{
          if(head == NULL){ //When list is empty
             head = n;
             tail = n;
+            teste();
             return;
          }
          if(head->next == NULL){ //Just one item on the list
             head = n;
             head->next = tail;
             tail->prev = head;
+            teste();
             return;
          }
          if(n == head){ //n is first item on the list
+            teste();
             return;
          }
          if(head->next == tail && (n==head || n==tail) ){ //Modifying list that has just two items
             Node* temp = head;
             head = tail;
             tail = temp;
-            head->next = tail->next;
+            head->next = tail;
             tail->next = NULL;
-            tail->prev = head->prev;
+            tail->prev = head;
             head->prev = NULL;
+            teste();
             return;
          }
          if(n->next == NULL && n->prev != NULL){ //n is last item on the list
@@ -62,12 +66,14 @@ class LRUCache : public Cache{
             n->prev = NULL;
             head->prev = n;
             head = n;
+            teste();
             return;
          }
          if(n->next == NULL && n->prev == NULL){ //adding new item to the list
             n->next = head;
             head->prev = n;
             head = n;
+            teste();
             return;
          }
          n->prev->next = n->next; //Taking item from middle to head of the list
@@ -76,6 +82,22 @@ class LRUCache : public Cache{
          n->next = head;
          head->prev = n;
          head = n;
+         teste();
+      }
+      void teste(){
+         cout << "\n---------\n";
+         Node* tem=head;
+         for(int i=0;i<mp.size();i++){
+            cout << tem->key << ' ';
+            if(tem->next != NULL) tem = tem->next;
+         }
+         cout << "\n---------\n";
+
+         map<int,Node*>::iterator itr;
+         for(itr=mp.begin();itr!=mp.end();itr++){
+            cout << itr->first << ' ';
+         }
+         cout << "\n---------\n";
       }
    public:
       LRUCache(int capacity){
