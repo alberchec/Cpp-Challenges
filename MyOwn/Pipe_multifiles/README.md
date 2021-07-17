@@ -1,4 +1,4 @@
-# Pipe with C++
+# Pipe multifiles and C++
 
 This folder contains three files, where I learned how to get outputs from one C++ program and pipe it to another one. It also has a makefile.
 
