@@ -31,9 +31,20 @@ class Cache{
 class LRUCache : public Cache{
    private:
       void sort(Node* n){
-         if(n->prev == NULL) return;
+         if(head == NULL){
+            head = n;
+            tail = n;
+            return;
+         }
+         if(head->next == NULL){
+            head = n;
+            head->next = tail;
+            tail->prev = head;
+            return;
+         }
+         if(n == head) return;
          n->prev->next = n->next;
-         n->next->prev = n->prev;
+         if(n->next != NULL) n->next->prev = n->prev;
          n->prev = NULL;
          n->next = head;
          head = n;
@@ -41,9 +52,8 @@ class LRUCache : public Cache{
    public:
       LRUCache(int capacity){
          cp = capacity;
-         tail = new Node(2,0);
-         head = new Node(NULL,tail,1,0);
-         tail->prev = head;
+         tail = NULL;
+         head = NULL;
       }
       void set(int key, int value){
          if(mp.find(key) != mp.end() ){ //If key exists -> update
@@ -58,7 +68,7 @@ class LRUCache : public Cache{
                temp->next = NULL;
                tail = temp;
             }
-            Node* temp = new Node(head,tail,key,value);
+            Node* temp = new Node(key,value);
             mp.insert(make_pair(key,temp) );
             sort(mp[key]);
          }
