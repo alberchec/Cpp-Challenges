@@ -31,22 +31,50 @@ class Cache{
 class LRUCache : public Cache{
    private:
       void sort(Node* n){
-         if(head == NULL){
+         if(head == NULL){ //When list is empty
             head = n;
             tail = n;
             return;
          }
-         if(head->next == NULL){
+         if(head->next == NULL){ //Just one item on the list
             head = n;
             head->next = tail;
             tail->prev = head;
             return;
          }
-         if(n == head) return;
-         n->prev->next = n->next;
-         if(n->next != NULL) n->next->prev = n->prev;
+         if(n == head){ //n is first item on the list
+            return;
+         }
+         if(head->next == tail && (n==head || n==tail) ){ //Just two items on the list
+            Node* temp = head;
+            head = tail;
+            tail = temp;
+            head->next = tail->next;
+            tail->next = NULL;
+            tail->prev = head->prev;
+            head->prev = NULL;
+            return;
+         }
+         if(n->next == NULL && n->prev != NULL){ //n is last item on the list
+            n->prev->next = NULL;
+            tail = n->prev;
+            n->next = head;
+            n->prev = NULL;
+            head->prev = n;
+            head = n;
+            return;
+         }
+         if(n->next == NULL && n->prev == NULL){ //adding new item to the list
+            n->next = head;
+            head->prev = n;
+            head = n;
+            return;
+         }
+         n->prev->next = n->next; //Taking item from middle to head of the list
+         n->next->prev = n->prev;
          n->prev = NULL;
          n->next = head;
+         head->prev = n;
          head = n;
       }
    public:
