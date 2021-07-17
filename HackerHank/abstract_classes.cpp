@@ -45,7 +45,7 @@ class LRUCache : public Cache{
          if(n == head){ //n is first item on the list
             return;
          }
-         if(head->next == tail && (n==head || n==tail) ){ //Just two items on the list
+         if(head->next == tail && (n==head || n==tail) ){ //Modifying list that has just two items
             Node* temp = head;
             head = tail;
             tail = temp;
