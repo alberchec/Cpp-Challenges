@@ -1,13 +1,13 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 int main(){
-	int n = 10;
+	ifstream input("input.txt");
+	string s;
 
-	cout << n << ' ';
-
-	for(int i=0;i<n;i++){
-		cout << i << ' ';
+	while(getline(input,s) ){
+		cout << s << endl;
 	}
 
 	return 0;
