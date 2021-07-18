@@ -22,4 +22,4 @@ run:
 	./file1 | ./file2 | ./file3
 
 clean:
-	rm *.o file1 file2 file3 result.txt
+	rm *.o file1 file2 file3 inputs.txt result.txt
