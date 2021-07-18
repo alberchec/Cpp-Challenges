@@ -88,7 +88,7 @@ void counterspell(Spell *spell) {
     string scrollName = spell->revealScrollName();
     string journal = SpellJournal::read();
 
-    //Longest common subsequence
+    //Longest common subsequence problem
     int m = scrollName.length();
     int n = journal.length();
     int array[m+1][n+1]; 
