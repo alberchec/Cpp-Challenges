@@ -99,9 +99,9 @@ void counterspell(Spell *spell) {
     for (int i=1;i<=m;i++) {
         for (int j=1;j<=n;j++) {
             if (scrollName[i-1] == journal[j-1])
-                array[i][j]=array[i-1][j-1]+1;
+                array[i][j] = array[i-1][j-1]+1;
             else
-                array[i][j]=max(array[i][j-1],array[i-1][j]);
+                array[i][j] = max(array[i][j-1],array[i-1][j]);
         }
     }  
     cout << array[m][n] << endl; 
