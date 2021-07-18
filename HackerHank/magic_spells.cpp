@@ -88,17 +88,23 @@ void counterspell(Spell *spell) {
     string scrollName = spell->revealScrollName();
     string journal = SpellJournal::read();
 
-    string counterspell;
+    //Longest common subsequence
+    int m = scrollName.length();
+    int n = journal.length();
+    int array[m+1][n+1]; 
 
-    for(int i=0;i<scrollName.size();i++){
-        int pos = journal.find(scrollName[i]);
-        if(pos != -1){
-            counterspell += journal[pos];
-            journal = journal.substr(pos);
+    // solve for LCS
+    for (int i=0;i<=m;i++) array[i][0]=0;
+    for (int j=0;j<=n;j++) array[0][j]=0;
+    for (int i=1;i<=m;i++) {
+        for (int j=1;j<=n;j++) {
+            if (scrollName[i-1] == journal[j-1])
+                array[i][j]=array[i-1][j-1]+1;
+            else
+                array[i][j]=max(array[i][j-1],array[i-1][j]);
         }
-    }
-
-    cout << counterspell << endl;
+    }  
+    cout << array[m][n] << endl; 
 
 
 }
