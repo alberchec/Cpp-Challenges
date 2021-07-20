@@ -22,7 +22,7 @@ Tracking numbers can be added to track_numbers.txt file via arguments passed to 
 
 First inside correios.cpp is necessary to define two file locations. 
 
-- The first temp_file is where the html content is going to be temporary stored.
+- The first, temp_file, is where the html content is going to be temporary stored.
 
 - The second is track_numbers_file, location where your tracking numbers are going to be stored.
 
