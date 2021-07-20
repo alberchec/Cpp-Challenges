@@ -16,6 +16,6 @@ I actually created a bash function in my terminal so I just need to enter:
 
 The bash function looks like this:
 
->correios(){
-  curl https://www.linkcorreios.com.br/"$1" -s | ./correios.out
+>correios(){ \
+  curl https://www.linkcorreios.com.br/"$1" -s | ./correios.out \
 }
