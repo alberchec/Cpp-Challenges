@@ -39,7 +39,7 @@ void parse_correios(string name){
 		v.push_back(temp);
 	}
 
-	cout << "\n//-----------------------------------------//\n";
+	cout << "\n//---------------------------------------------------//\n";
 	cout << name << endl;
 
 	for(int i=0;i<v.size();i++){
@@ -53,7 +53,7 @@ void parse_correios(string name){
 		cout << v[i] << endl;
 	}
 
-	cout << "//-----------------------------------------//\n\n";
+	cout << "//---------------------------------------------------//\n\n";
 }
 
 void main_program(){
