@@ -4,8 +4,8 @@
 #include <fstream>
 using namespace std;
 
-#define temp_file "/Users/alberto/Documents/Terminal_programs/Correios/track.html"
-#define track_numbers_file "/Users/alberto/Documents/Terminal_programs/Correios/track_numbers.txt"
+#define temp_file "/your_path/track.html"
+#define track_numbers_file "/your_path/track_numbers.txt"
 
 void parse_correios(string name){
 	string s,parse;
