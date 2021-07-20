@@ -39,8 +39,8 @@ void parse_correios(string name){
 		v.push_back(temp);
 	}
 
-	cout << "\n//---------------------------------------------------//\n";
-	cout << name << endl;
+	cout << "\n//-----------------------------------------------------//\n";
+	cout << "   " << name << endl;
 
 	for(int i=0;i<v.size();i++){
 		while(v[i].find('<') != -1){
@@ -50,10 +50,10 @@ void parse_correios(string name){
 			v[i].erase(pos1,pos2 - pos1 + 1);
 		}
 
-		cout << v[i] << endl;
+		cout << "   " << v[i] << endl;
 	}
 
-	cout << "//---------------------------------------------------//\n\n";
+	cout << "//-----------------------------------------------------//\n\n";
 }
 
 void main_program(){
