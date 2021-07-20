@@ -10,7 +10,7 @@ The previous version needed a bash function to work, because in this application
 
 ### About the program
 
-This program is used to get Brazilian post service(Correios) packages status by Web scraping the html file returned when requested by curl cmd. I used the system function from cstdlib to be able to implement curl inside C++.
+This program is a terminal application used to get Brazilian post service(Correios) packages status by Web scraping the html file returned when requested by curl cmd. I used the system function from cstdlib to be able to implement curl inside C++.
 
 Packages tracking numbers are stored in a file named track_numbers.txt. The program search for this numbers inside the file and then requests the package status on the Correios web page.
 
@@ -26,7 +26,7 @@ First inside correios.cpp is necessary to define two file locations.
 
 - The second is track_numbers_file, location where your tracking numbers are going to be stored.
 
-After compiling correios.cpp and obtaining correios.out, you can run the executable in five manners.
+After compiling correios.cpp and obtaining correios.out, you have five ways to run the executable in terminal.
 
 - Add tracking numbers
 
