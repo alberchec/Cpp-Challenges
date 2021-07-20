@@ -30,23 +30,23 @@ After compiling correios.cpp and obtaining correios.out, you can run the executa
 
 - Add tracking numbers
 
-> ./correios.out "track_number" "Package description"
+  > ./correios.out "track_number" "Package description"
 
 - List tracking numbers stored
 
-> ./correios.out -l
+  > ./correios.out -l
 
 - Delete tracking number
 
-> ./correios.out -d "number from list"
+  > ./correios.out -d "number from list"
 
 - Delete all tracking numbers stored
 
-> ./correios.out --d-all
+  > ./correios.out --d-all
 
 - Get packages status
 
-> ./correios.out
+  > ./correios.out
 
 ---
 
