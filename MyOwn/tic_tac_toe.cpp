@@ -21,17 +21,17 @@ char evaluate_game(char value[3][3]){
 
 void print_game(char value[3][3]){
 	cout << "  0  " << value[0][0] << " | " << value[0][1] << " | " << value[0][2] << endl;
-	cout << "    -----------" << endl;
+	cout << "    ---+---+---" << endl;
 	cout << "  1  " << value[1][0] << " | " << value[1][1] << " | " << value[1][2] << endl;
-	cout << "    -----------" << endl;
+	cout << "    ---+---+---" << endl;
 	cout << "  2  " << value[2][0] << " | " << value[2][1] << " | " << value[2][2] << '\n' << endl;
 
 
 }
 
 void game(){
-	static char value[3][3] = { {' ',' ',' '},{' ',' ',' '},{' ',' ',' '} };
-	static int n = 9;
+	char value[3][3] = { {' ',' ',' '},{' ',' ',' '},{' ',' ',' '} };
+	int n = 9;
 	cout << "\n  Tic Tac Toe Game\n" << endl;
 	cout << "     0   1   2" << endl;
 	print_game(value);
@@ -57,7 +57,7 @@ void game(){
 		print_game(value);
 		char game_result = evaluate_game(value);
 		if(game_result != ' '){
-			cout << "  Winner is " << game_result << "!      " << endl;
+			cout << "  Winner is " << game_result << "!        \n" << endl;
 			return;
 		}
 	}
@@ -65,5 +65,13 @@ void game(){
 }
 
 int main(){
-	game();
+	char pa;
+	do{
+		game();
+		cout << "  Play again?(y/n): ";
+		cin >> pa;
+		if(pa == 'n') break;
+		cout << "\033[F                                   ";
+		cout << "\033[F\033[F\033[F\033[F\033[F\033[F\033[F\033[F\033[F\033[F\033[F\033[F";
+	}while(pa == 'y');
 }
