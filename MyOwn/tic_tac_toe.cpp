@@ -4,8 +4,8 @@ using namespace std;
 
 void player(int n){
 	string result;
-	if(n % 2) result = "  Player o move:   \b\b";
-	else	  result = "  Player x move:   \b\b";
+	if(n % 2) result = "  Player 'o' move:   \b\b";
+	else	  result = "  Player 'x' move:   \b\b";
 	cout << result;
 }
 
@@ -57,7 +57,7 @@ void game(){
 		print_game(value);
 		char game_result = evaluate_game(value);
 		if(game_result != ' '){
-			cout << endl << "  Winner is " << game_result << "!" << endl;
+			cout << "  Winner is " << game_result << "!      " << endl;
 			return;
 		}
 	}
