@@ -2,12 +2,10 @@
 #include <climits>
 using namespace std;
 
-void player(){
-	static bool turn = true;
+void player(int n){
 	string result;
-	if(turn) result = "  Player x move:   \b\b";
-	else	 result = "  Player o move:   \b\b";
-	turn = !turn;
+	if(n % 2) result = "  Player o move:   \b\b";
+	else	  result = "  Player x move:   \b\b";
 	cout << result;
 }
 
@@ -22,7 +20,6 @@ char evaluate_game(char value[3][3]){
 }
 
 void print_game(char value[3][3]){
-	cout << "\033[F\033[F\033[F\033[F\033[F\033[F\033[F";
 	cout << "  0  " << value[0][0] << " | " << value[0][1] << " | " << value[0][2] << endl;
 	cout << "    -----------" << endl;
 	cout << "  1  " << value[1][0] << " | " << value[1][1] << " | " << value[1][2] << endl;
@@ -35,23 +32,32 @@ void print_game(char value[3][3]){
 void game(){
 	static char value[3][3] = { {' ',' ',' '},{' ',' ',' '},{' ',' ',' '} };
 	static int n = 9;
+	cout << "\n  Tic Tac Toe Game\n" << endl;
+	cout << "     0   1   2" << endl;
+	print_game(value);
 	while(n--){
 		start:
-		player();
+		player(n);
 		int position,x,y;
 		cin >> position;
 		x = position / 10;
 		y = position % 10;
+		if(x > 2 || y > 2){
+			cout << "\033[F";
+			goto start;
+		}
 		if(value[x][y] == ' '){
 			if(n % 2) value[x][y] = 'o';
 			else 	  value[x][y] = 'x';
 		}else{
+			cout << "\033[F";
 			goto start;
 		}
+		cout << "\033[F\033[F\033[F\033[F\033[F\033[F\033[F";
 		print_game(value);
 		char game_result = evaluate_game(value);
 		if(game_result != ' '){
-			cout << endl << "  Winner is " << game_result << endl;
+			cout << endl << "  Winner is " << game_result << "!" << endl;
 			return;
 		}
 	}
@@ -59,14 +65,5 @@ void game(){
 }
 
 int main(){
-	cout << "\n  Tic Tac Toe Game\n" << endl;
-	//cout << "  Player 1 -> x\n  Player 2 -> o\n" << endl;
-	cout << "     0   1   2   " << endl;
-	cout << "  0    |   |   " << endl;
-	cout << "    -----------" << endl;
-	cout << "  1    |   |   " << endl;
-	cout << "    -----------" << endl;
-	cout << "  2    |   |   \n" << endl;
-
 	game();
 }
