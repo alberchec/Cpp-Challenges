@@ -1,10 +1,10 @@
 #include "calendar.h"
 
 void Calendar::set_month_length(int year){
-	if(year % 4){
-		months_length[1] = 28;
-	}else{
+	if(leap_year(year) ){
 		months_length[1] = 29;
+	}else{
+		months_length[1] = 28;
 	}
 }
 
