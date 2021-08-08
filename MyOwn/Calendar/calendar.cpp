@@ -8,6 +8,17 @@ void Calendar::set_month_length(int year){
 	}
 }
 
+bool Calendar::leap_year(int year){
+	bool leap = false;
+
+	if(year % 4) 		leap = false;
+	else if(year % 100) leap = true;
+	else if(year % 400) leap = false;
+	else				leap = true;
+
+	return leap;	
+}
+
 int Calendar::get_weekday(int day, int month, int year){
 	set_month_length(year);
 	int year_diff = year - start_year;
