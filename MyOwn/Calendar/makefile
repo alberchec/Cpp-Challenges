@@ -1,5 +1,5 @@
 calendar.out : calendar.o main.o
-	g++ calendar.o main.o -std=c++11
+	g++ calendar.o main.o -o calendar.out -std=c++11
 
 calendar.o : calendar.cpp
 	g++ -c calendar.cpp -std=c++11
