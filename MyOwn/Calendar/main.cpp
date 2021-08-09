@@ -5,7 +5,6 @@
 using namespace std;
 
 int main(){
-	Calendar cal;
 	cout << "\nThis program creates a month calendar!\n\n";
 
 	cout << "Enter the desired month number: ";
@@ -16,6 +15,11 @@ int main(){
 	cout << "Enter the desired year: ";
 	int year;
 	cin >> year;
+
+	//----------------------------------------------------------------//
+	//----------------------------------------------------------------//
+	//----------------------------------------------------------------//
+	//FETCH HTML TEMPLATE FROM CALENDAR.HTML
 
 	ifstream input("calendar.html");
 	if(!input.is_open()){
@@ -30,15 +34,32 @@ int main(){
 
 	input.close();
 
-	temp = to_string(month) + "-" + to_string(year) + ".html";
+	//----------------------------------------------------------------//
+	//----------------------------------------------------------------//
+	//----------------------------------------------------------------//
+	//CREATE MONTH HTML FILE
+
+	temp = month_name[month-1] + "-" + to_string(year) + ".html";
 	ofstream output(temp,ios::app);
+
+
+	//----------------------------------------------------------------//
+	//----------------------------------------------------------------//
+	//----------------------------------------------------------------//
+	//ADD MONTH NAME AND YEAR TO HTML FILE
 
 	int pos = calendar_html.find("/--Replace_with_month--/");
 	calendar_html.replace(pos,24,month_name[month-1]);
 
 	pos = calendar_html.find("/--Replace_with_year--/");
-	calendar_html.replace(pos,23,year);
+	calendar_html.replace(pos,23,to_string(year) );
 
 	output << calendar_html;
-	output.close();
+	
+	//----------------------------------------------------------------//
+	//----------------------------------------------------------------//
+	//----------------------------------------------------------------//
+	//ADD DAY BLOCKS TO HTML FILE
+
+	
 }
