@@ -41,7 +41,7 @@ int main(){
 	//CREATE MONTH HTML FILE
 
 	temp = month_name[month-1] + "-" + to_string(year) + ".html";
-	ofstream output(temp,ios::app);
+	ofstream output(temp,ios::trunc);
 
 
 	//----------------------------------------------------------------//
