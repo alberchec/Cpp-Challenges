@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "calendar.h"
+#include "/Users/alberto/Desktop/Cpp-Challenges/MyOwn/Format_string/format_string.h"
 
 using namespace std;
 
@@ -65,6 +66,7 @@ int main(){
 
 	int weekday = cal.get_weekday();
 
+	//Add previous month days
 	int prev_len = cal.get_prev_m_len();
 
 	for(int i=0;i<weekday;i++){
@@ -74,14 +76,12 @@ int main(){
 		string content = to_string(prev_len - weekday + 1 + i);
 
 		string temp = div_template;
-		pos = temp.find("{}");
-		temp.replace(pos,2,class_content);
-		pos = temp.find("{}");
-		temp.replace(pos,2,content);
+		format_string(temp,class_content,content);
 
 		days_div += temp;
 	}
 
+	//Add current month days
 	int m_len = cal.get_month_length();
 
 	for(int i=weekday;i<m_len+weekday;i++){
@@ -91,14 +91,12 @@ int main(){
 		string content = to_string(i - weekday + 1);
 
 		string temp = div_template;
-		pos = temp.find("{}");
-		temp.replace(pos,2,class_content);
-		pos = temp.find("{}");
-		temp.replace(pos,2,content);
+		format_string(temp,class_content,content);
 
 		days_div += temp;
 	}
 
+	//Add next month days
 	weekday = (weekday + m_len - 1) % 7;
 
 	int day_next_month = 1;
@@ -109,13 +107,15 @@ int main(){
 		day_next_month++;
 
 		string temp = div_template;
-		pos = temp.find("{}");
-		temp.replace(pos,2,class_content);
-		pos = temp.find("{}");
-		temp.replace(pos,2,content);
+		format_string(temp,class_content,content);
 
 		days_div += temp;
 	}
+
+	//----------------------------------------------------------------//
+	//----------------------------------------------------------------//
+	//----------------------------------------------------------------//
+	//OUTPUT HTML FILE
 
 	pos = calendar_html.find("/--Replace_with_days--/");
 	calendar_html.replace(pos,23,days_div);
