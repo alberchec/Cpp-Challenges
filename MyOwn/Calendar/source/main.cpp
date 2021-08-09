@@ -22,7 +22,7 @@ int main(){
 	//----------------------------------------------------------------//
 	//FETCH HTML TEMPLATE FROM CALENDAR.HTML
 
-	ifstream input("calendar.html");
+	ifstream input("source/calendar.html");
 	if(!input.is_open()){
 		cout << "Calendar.html not found!\n";
 		return 1;
