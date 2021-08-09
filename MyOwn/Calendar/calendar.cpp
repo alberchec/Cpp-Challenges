@@ -1,6 +1,6 @@
 #include "calendar.h"
 
-void Calendar::set_month_length(int year){
+void Calendar::set_month_length(){
 	if(leap_year(year) ){
 		months_length[1] = 29;
 	}else{
@@ -8,7 +8,7 @@ void Calendar::set_month_length(int year){
 	}
 }
 
-bool Calendar::leap_year(int year){
+bool Calendar::leap_year(){
 	bool leap = false;
 
 	if(year % 4) 		leap = false;
@@ -19,7 +19,7 @@ bool Calendar::leap_year(int year){
 	return leap;	
 }
 
-int Calendar::get_weekday(int day, int month, int year){
+int Calendar::get_weekday(){
 	set_month_length(year);
 	int year_diff = year - start_year;
 	int day_diff = 0;
