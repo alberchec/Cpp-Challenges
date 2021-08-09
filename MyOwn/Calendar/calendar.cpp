@@ -42,5 +42,5 @@ int Calendar::get_weekday(){
 }
 
 int Calendar::get_month_length(){
-
+	return month_length;
 }
