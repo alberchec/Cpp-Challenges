@@ -99,38 +99,28 @@ int main(){
 		days_div += temp;
 	}
 
+	weekday = (weekday + m_len - 1) % 7;
 
+	int day_next_month = 1;
+	for(int i=weekday+1;i<7;i++){
+		string class_content = "day day_other_month";
 
+		string content = to_string(day_next_month);
+		day_next_month++;
+
+		string temp = div_template;
+		pos = temp.find("{}");
+		temp.replace(pos,2,class_content);
+		pos = temp.find("{}");
+		temp.replace(pos,2,content);
+
+		days_div += temp;
+	}
 
 	pos = calendar_html.find("/--Replace_with_days--/");
 	calendar_html.replace(pos,23,days_div);
 
-
-
-
-
 	output << calendar_html;
 	output.close();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 }
