@@ -84,9 +84,19 @@ int main(){
 
 	int m_len = cal.get_month_length();
 
-	for(int i=1;i<=m_len;i++){
+	for(int i=weekday;i<m_len+weekday;i++){
 		string class_content = "day";
-		if()
+		if( !(i % 7) ) class_content += " special_day";
+
+		string content = to_string(i - weekday + 1);
+
+		string temp = div_template;
+		pos = temp.find("{}");
+		temp.replace(pos,2,class_content);
+		pos = temp.find("{}");
+		temp.replace(pos,2,content);
+
+		days_div += temp;
 	}
 
 
