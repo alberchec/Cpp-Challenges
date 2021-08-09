@@ -1,11 +1,18 @@
 #include "calendar.h"
 
+Calendar::Calendar(int d, int m, int y) : day(d), month(m), year(y){
+	set_month_length();
+}
+
 void Calendar::set_month_length(){
-	if(leap_year(year) ){
-		months_length[1] = 29;
+	if(month != 2){
+		month_length = months_length[month - 1];
+	}else if(leap_year() ){
+		month_length = 29;
 	}else{
-		months_length[1] = 28;
+		month_length = 28;
 	}
+
 }
 
 bool Calendar::leap_year(){
@@ -20,17 +27,20 @@ bool Calendar::leap_year(){
 }
 
 int Calendar::get_weekday(){
-	set_month_length(year);
 	int year_diff = year - start_year;
 	int day_diff = 0;
 	if(year_diff) day_diff = 1;
 	day_diff = (year_diff - 1) / 4 + 365 * year_diff;
 
 	for(int i=0;i<month-1;i++){
-		day_diff += months_length[i];
+		day_diff += month_length;
 	}
 	day_diff += day - 1;
 
 	int weekday = (day_diff + start_weekday) % 7;
 	return weekday;
+}
+
+int Calendar::get_month_length(){
+
 }
