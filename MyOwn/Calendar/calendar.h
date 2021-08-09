@@ -9,7 +9,10 @@ private:
 	int day;
 	int month;
 	int year;
+	int absolute_date;
 	int month_length;
+	int prev_month_length;
+	void absolute_date();
 	void set_month_length();
 public:
 	Calendar(int,int,int);

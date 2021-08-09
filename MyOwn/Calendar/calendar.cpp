@@ -1,7 +1,21 @@
 #include "calendar.h"
 
 Calendar::Calendar(int d, int m, int y) : day(d), month(m), year(y){
+	absolute_date();
 	set_month_length();
+}
+
+void Calendar::absolute_date(){
+	absolute_date = 0;
+	int year_diff = year - start_year;
+	if(year_diff) absolute_date = 1;
+	absolute_date = (year_diff - 1) / 4 + 365 * year_diff;
+
+	for(int i=0;i<month-1;i++){
+		if(i == 1 && leap_year() ) absolute_date++;
+		absolute_date += months_length[i];
+	}
+	absolute_date += day;
 }
 
 void Calendar::set_month_length(){
