@@ -53,13 +53,64 @@ int main(){
 
 	pos = calendar_html.find("/--Replace_with_year--/");
 	calendar_html.replace(pos,23,to_string(year) );
-
-	output << calendar_html;
 	
 	//----------------------------------------------------------------//
 	//----------------------------------------------------------------//
 	//----------------------------------------------------------------//
 	//ADD DAY BLOCKS TO HTML FILE
+
+	Calendar cal(1,month,year);
+	string days_div = "";
+	const string div_template = "<div class=\"{}\">{}</div>";
+
+	int weekday = cal.get_weekday();
+
+	for(int i=0;i<weekday;i++){
+		int prev_len = cal.get_prev_m_len();
+
+		string class_content = "day day_other_month";
+		if(!i) class_content += " special_day";
+
+		string content = to_string(prev_len - weekday + i);
+
+		string temp = div_template;
+		pos = temp.find("{}");
+		temp.replace(pos,2,class_content);
+		pos = temp.find("{}");
+		temp.replace(pos,2,content);
+
+		days_div += temp;
+	}
+
+	pos = calendar_html.find("/--Replace_with_days--/");
+	calendar_html.replace(pos,23,days_div);
+
+
+
+
+
+	output << calendar_html;
+	output.close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	
 }
