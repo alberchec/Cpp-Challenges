@@ -86,55 +86,6 @@ int main(){
 		date++;
 	}
 
-	//Add previous month days
-	/*
-	Date date2(date.get_abs_date() - weekday);
-	int day_prev_month = date2.get_day();
-
-	for(int i=0;i<weekday;i++){
-		string class_content = "day day_other_month";
-		if(!i) class_content += " special_day";
-
-		string content = to_string(day_prev_month + i);
-
-		string temp = div_template;
-		format_string(temp,class_content,content);
-
-		days_div += temp;
-	}
-
-	//Add current month days
-	
-	int m_len = date.get_month_length();
-
-	for(int i=weekday;i<m_len+weekday;i++){
-		string class_content = "day";
-		if( !(i % 7) ) class_content += " special_day";
-
-		string content = to_string(i - weekday + 1);
-
-		string temp = div_template;
-		format_string(temp,class_content,content);
-
-		days_div += temp;
-	}
-
-	//Add next month days
-	weekday = (weekday + m_len - 1) % 7;
-
-	int day_next_month = 1;
-	for(int i=weekday+1;i<7;i++){
-		string class_content = "day day_other_month";
-
-		string content = to_string(day_next_month);
-		day_next_month++;
-
-		string temp = div_template;
-		format_string(temp,class_content,content);
-
-		days_div += temp;
-	}
-    */
 	//----------------------------------------------------------------//
 	//----------------------------------------------------------------//
 	//----------------------------------------------------------------//
