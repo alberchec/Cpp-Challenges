@@ -7,6 +7,24 @@ Calendar::Calendar(int d, int m, int y) : day(d), month(m), year(y){
 }
 
 Calendar::Calendar(int abs_date) : abs_date(abs_date) {
+	set_date();
+	set_weekday();
+}
+
+void Calendar::set_abs_date(){
+	abs_date = 0;
+	int year_diff = year - start_year;
+	if(year_diff) abs_date = 1;
+	abs_date += (year_diff - 1) / 4 + 365 * year_diff;
+
+	for(int i=0;i<month-1;i++){
+		if(i == 1 && leap_year() ) abs_date++;
+		abs_date += months_length[i];
+	}
+	abs_date += day;
+}
+
+void Calendar::set_date(){
 	year = start_year;
 	month = 1;
 	day = 0;
@@ -34,21 +52,6 @@ Calendar::Calendar(int abs_date) : abs_date(abs_date) {
 	}
 
 	day = abs_date;
-
-	set_weekday();
-}
-
-void Calendar::set_abs_date(){
-	abs_date = 0;
-	int year_diff = year - start_year;
-	if(year_diff) abs_date = 1;
-	abs_date += (year_diff - 1) / 4 + 365 * year_diff;
-
-	for(int i=0;i<month-1;i++){
-		if(i == 1 && leap_year() ) abs_date++;
-		abs_date += months_length[i];
-	}
-	abs_date += day;
 }
 
 void Calendar::set_month_length(){

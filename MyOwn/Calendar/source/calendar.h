@@ -15,6 +15,7 @@ private:
 	int weekday;
 	int month_length;
 	void set_abs_date();
+	void set_date();
 	void set_month_length();
 	void set_weekday();
 public:
