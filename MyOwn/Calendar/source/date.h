@@ -24,6 +24,7 @@ public:
 	bool leap_year(); //Conditions to occur a leap year
 	int get_abs_date();
 	int get_day();
+	int get_month();
 	int get_weekday();
 	int get_month_length();
 	std::string get_date();

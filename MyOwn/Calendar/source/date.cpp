@@ -109,6 +109,10 @@ int Date::get_day(){
 	return day;
 }
 
+int Date::get_month(){
+	return month;
+}
+
 Date& operator + (Date& date, int add){
 	int abs_date = date.get_abs_date();
 	abs_date += add;
