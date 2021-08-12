@@ -123,7 +123,7 @@ Date& operator - (Date& date, int subtract){
 	return date;
 }
 
-Date& operator += (Date& date, int subtract){
+Date& operator += (Date& date, int add){
 	int abs_date = date.get_abs_date();
 	abs_date += add;
 	date.set_date(abs_date);
