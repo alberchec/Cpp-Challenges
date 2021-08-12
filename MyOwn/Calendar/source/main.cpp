@@ -72,7 +72,7 @@ int main(){
 		string class_content = "day";
 		if(!n) class_content += " special_day";
 		if(date.get_month() != month) class_content += " day_other_month";
-        //std::cout << date.get_month() << std::endl;
+
 		string content = to_string(date.get_day() );
 
 		string temp = div_template;
