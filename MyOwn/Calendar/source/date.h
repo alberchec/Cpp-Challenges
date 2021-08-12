@@ -21,7 +21,7 @@ private:
 public:
 	Date(int,int,int);
 	Date(int);
-	bool leap_year(); //Conditions to occur a leap year
+	bool leap_year(int); //Conditions to occur a leap year
 	int get_abs_date();
 	int get_day();
 	int get_month();
