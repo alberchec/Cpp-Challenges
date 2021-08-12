@@ -32,5 +32,7 @@ public:
 
 Date& operator + (Date&,int);
 Date& operator - (Date&,int);
+Date& operator += (Date&,int);
+Date& operator -= (Date&,int);
 
 #endif
