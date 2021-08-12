@@ -67,13 +67,15 @@ int main(){
 	int weekday = cal.get_weekday();
 
 	//Add previous month days
-	int prev_len = cal.get_prev_m_len();
+	
+	Calendar cal2(cal.get_abs_date() - weekday);
+	int day_prev_month = cal2.get_day();
 
 	for(int i=0;i<weekday;i++){
 		string class_content = "day day_other_month";
 		if(!i) class_content += " special_day";
 
-		string content = to_string(prev_len - weekday + 1 + i);
+		string content = to_string(day_prev_month + i);
 
 		string temp = div_template;
 		format_string(temp,class_content,content);
@@ -82,6 +84,7 @@ int main(){
 	}
 
 	//Add current month days
+	
 	int m_len = cal.get_month_length();
 
 	for(int i=weekday;i<m_len+weekday;i++){
