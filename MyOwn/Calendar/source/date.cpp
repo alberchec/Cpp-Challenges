@@ -114,44 +114,33 @@ int Date::get_month(){
 	return month;
 }
 
-Date& operator + (Date& date, int add){
-	int abs_date = date.get_abs_date();
-	abs_date += add;
+Date& operator_overload(Date& date, int val){
+	int abs_date = date .get_abs_date();
+	abs_date += val;
 	date.set_date(abs_date);
 	return date;
+}
+
+Date& operator + (Date& date, int add){
+	return operator_overload(date,add);
 }
 
 Date& operator - (Date& date, int subtract){
-	int abs_date = date.get_abs_date();
-	abs_date -= subtract;
-	date.set_date(abs_date);
-	return date;
+	return operator_overload(date,-subtract);
 }
 
 Date& operator += (Date& date, int add){
-	int abs_date = date.get_abs_date();
-	abs_date += add;
-	date.set_date(abs_date);
-	return date;
+	return operator_overload(date,add);
 }
 
 Date& operator -= (Date& date, int subtract){
-	int abs_date = date.get_abs_date();
-	abs_date -= subtract;
-	date.set_date(abs_date);
-	return date;
+	return operator_overload(date,-subtract);
 }
 
 Date& operator ++ (Date& date, int){
-	int abs_date = date.get_abs_date();
-	abs_date++;
-	date.set_date(abs_date);
-	return date;
+	return operator_overload(date,1);
 }
 
 Date& operator -- (Date& date, int){
-	int abs_date = date.get_abs_date();
-	abs_date--;
-	date.set_date(abs_date);
-	return date;
+	return operator_overload(date,-1);
 }

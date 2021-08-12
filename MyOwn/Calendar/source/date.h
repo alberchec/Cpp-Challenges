@@ -31,6 +31,7 @@ public:
 	void set_date(int);
 };
 
+Date& operator_overload(Date&,int);
 Date& operator + (Date&,int);
 Date& operator - (Date&,int);
 Date& operator += (Date&,int);
