@@ -3,6 +3,7 @@
 Calendar::Calendar(int d, int m, int y) : day(d), month(m), year(y){
 	set_abs_date();
 	set_month_length();
+	set_weekday();
 }
 
 Calendar::Calendar(int abs_date) : abs_date(abs_date) {
@@ -34,6 +35,7 @@ Calendar::Calendar(int abs_date) : abs_date(abs_date) {
 
 	day = abs_date;
 
+	set_weekday();
 }
 
 void Calendar::set_abs_date(){
@@ -73,8 +75,11 @@ bool Calendar::leap_year(){
 	return leap;	
 }
 
+void Calendar::set_weekday(){
+	weekday = (abs_date - 1 + start_weekday) % 7;
+}
+
 int Calendar::get_weekday(){
-	int weekday = (abs_date - 1 + start_weekday) % 7;
 	return weekday;
 }
 

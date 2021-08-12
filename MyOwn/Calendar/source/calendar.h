@@ -13,8 +13,10 @@ private:
 	int year;
 	int abs_date;
 	int month_length;
+	int weekday;
 	void set_abs_date();
 	void set_month_length();
+	void set_weekday();
 public:
 	Calendar(int,int,int);
 	Calendar(int);
