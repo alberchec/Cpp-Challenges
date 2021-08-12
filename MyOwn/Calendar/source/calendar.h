@@ -1,9 +1,9 @@
-#ifndef CALENDAR
-#define CALENDAR
+#ifndef DATE
+#define DATE
 
 #include <iostream>
 
-class Calendar{
+class Date{
 private:
 	static const int start_year = 2020; //Leap year
 	static const int start_weekday = 3; //Wednesday
@@ -19,8 +19,8 @@ private:
 	void set_month_length();
 	void set_weekday();
 public:
-	Calendar(int,int,int);
-	Calendar(int);
+	Date(int,int,int);
+	Date(int);
 	bool leap_year(); //Conditions to occur a leap year
 	int get_abs_date();
 	int get_day();

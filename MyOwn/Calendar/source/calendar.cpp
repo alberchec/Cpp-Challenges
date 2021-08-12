@@ -1,17 +1,17 @@
-#include "calendar.h"
+#include "date.h"
 
-Calendar::Calendar(int d, int m, int y) : day(d), month(m), year(y){
+Date::Date(int d, int m, int y) : day(d), month(m), year(y){
 	set_abs_date();
 	set_month_length();
 	set_weekday();
 }
 
-Calendar::Calendar(int abs_date) : abs_date(abs_date) {
+Date::Date(int abs_date) : abs_date(abs_date) {
 	set_date();
 	set_weekday();
 }
 
-void Calendar::set_abs_date(){
+void Date::set_abs_date(){
 	abs_date = 0;
 	int year_diff = year - start_year;
 	if(year_diff) abs_date = 1;
@@ -24,7 +24,7 @@ void Calendar::set_abs_date(){
 	abs_date += day;
 }
 
-void Calendar::set_date(){
+void Date::set_date(){
 	year = start_year;
 	month = 1;
 	day = 0;
@@ -54,7 +54,7 @@ void Calendar::set_date(){
 	day = abs_date;
 }
 
-void Calendar::set_month_length(){
+void Date::set_month_length(){
 	bool leap = leap_year();
 
 	if(month != 2){
@@ -67,7 +67,7 @@ void Calendar::set_month_length(){
 
 }
 
-bool Calendar::leap_year(){
+bool Date::leap_year(){
 	bool leap = false;
 
 	if(year % 4) 		leap = false;
@@ -78,28 +78,28 @@ bool Calendar::leap_year(){
 	return leap;	
 }
 
-void Calendar::set_weekday(){
+void Date::set_weekday(){
 	weekday = (abs_date - 1 + start_weekday) % 7;
 }
 
-int Calendar::get_weekday(){
+int Date::get_weekday(){
 	return weekday;
 }
 
-int Calendar::get_month_length(){
+int Date::get_month_length(){
 	return month_length;
 }
 
-int Calendar::get_abs_date(){
+int Date::get_abs_date(){
 	return abs_date;
 }
 
-std::string Calendar::get_date(){
+std::string Date::get_date(){
 	std::string date;
 	date = std::to_string(day) + "/" + std::to_string(month) + "/" + std::to_string(year);
 	return date;
 }
 
-int Calendar::get_day(){
+int Date::get_day(){
 	return day;
 }
