@@ -96,3 +96,7 @@ std::string Calendar::get_date(){
 	date = std::to_string(day) + "/" + std::to_string(month) + "/" + std::to_string(year);
 	return date;
 }
+
+int Calendar::get_day(){
+	return day;
+}

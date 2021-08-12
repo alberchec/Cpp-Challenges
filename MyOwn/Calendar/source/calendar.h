@@ -25,6 +25,7 @@ public:
 	int get_month_length();
 	int get_abs_date();
 	std::string get_date();
+	int get_day();
 };
 
 #endif
