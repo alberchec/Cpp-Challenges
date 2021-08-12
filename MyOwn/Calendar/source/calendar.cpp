@@ -60,12 +60,6 @@ void Calendar::set_month_length(){
 		month_length = 28;
 	}
 
-	if(month == 1)    prev_month_length = 31;
-	else if(month == 3){
-		if(leap) prev_month_length = 29;
-		else		  prev_month_length = 28;
-	}else		      prev_month_length = months_length[month-2];
-
 }
 
 bool Calendar::leap_year(){
@@ -90,10 +84,6 @@ int Calendar::get_month_length(){
 
 int Calendar::get_abs_date(){
 	return abs_date;
-}
-
-int Calendar::get_prev_m_len(){
-	return prev_month_length;
 }
 
 std::string Calendar::get_date(){

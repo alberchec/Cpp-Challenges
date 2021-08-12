@@ -13,7 +13,6 @@ private:
 	int year;
 	int abs_date;
 	int month_length;
-	int prev_month_length;
 	void set_abs_date();
 	void set_month_length();
 public:
@@ -23,7 +22,6 @@ public:
 	int get_weekday();
 	int get_month_length();
 	int get_abs_date();
-	int get_prev_m_len();
 	std::string get_date();
 };
 
