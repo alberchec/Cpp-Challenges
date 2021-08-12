@@ -28,30 +28,31 @@ void Date::set_date(){
 	year = start_year;
 	month = 1;
 	day = 0;
+	int absolute_date = abs_date;
 
-	while(abs_date > 365){
+	while(absolute_date > 365){
 		if(!leap_year() ){
 			year++;
-			abs_date -= 365; 
-		}else if(abs_date > 366){
+			absolute_date -= 365; 
+		}else if(absolute_date > 366){
 			year++;
-			abs_date -= 366;
+			absolute_date -= 366;
 		}else{
 			break;
 		}
 	}
 
-	while(abs_date >= 28){
+	while(absolute_date >= 28){
 		set_month_length();
-		if(abs_date > month_length){
-			abs_date -= month_length;
+		if(absolute_date > month_length){
+			absolute_date -= month_length;
 			month++;
 		}else{
 			break;
 		}
 	}
 
-	day = abs_date;
+	day = absolute_date;
 }
 
 void Date::set_date(int abs){
