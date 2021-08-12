@@ -1,6 +1,8 @@
 #ifndef CALENDAR
 #define CALENDAR
 
+#include <iostream>
+
 class Calendar{
 private:
 	static const int start_year = 2020; //Leap year
@@ -9,18 +11,20 @@ private:
 	int day;
 	int month;
 	int year;
-	int absolute_date;
+	int abs_date;
 	int month_length;
 	int prev_month_length;
-	void abs_date();
+	void set_abs_date();
 	void set_month_length();
 public:
 	Calendar(int,int,int);
+	Calendar(int);
 	bool leap_year(); //Conditions to occur a leap year
 	int get_weekday();
 	int get_month_length();
 	int get_abs_date();
 	int get_prev_m_len();
+	std::string get_date();
 };
 
 #endif

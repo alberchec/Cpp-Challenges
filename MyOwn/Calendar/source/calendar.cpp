@@ -1,21 +1,50 @@
 #include "calendar.h"
 
 Calendar::Calendar(int d, int m, int y) : day(d), month(m), year(y){
-	abs_date();
+	set_abs_date();
 	set_month_length();
 }
 
-void Calendar::abs_date(){
-	absolute_date = 0;
+Calendar::Calendar(int abs_date) : abs_date(abs_date) {
+	int year = start_year;
+	int month = 1;
+	int day = 0;
+	bool leap = leap_year();
+
+	while(abs_date > 365){
+		if(!leap){
+			year++;
+			abs_date -= 365; 
+		}else if(abs_date > 366){
+			year++;
+			abs_date -= 366;
+		}else{
+			break;
+		}
+	}
+
+	while(abs_date >= 28){
+		set_month_length();
+		abs_date -= month_length;
+		month++;
+	}
+
+	day = abs_date;
+	std::cout << day << '/' << month << '/' << year << std::endl;
+
+}
+
+void Calendar::set_abs_date(){
+	abs_date = 0;
 	int year_diff = year - start_year;
-	if(year_diff) absolute_date = 1;
-	absolute_date = (year_diff - 1) / 4 + 365 * year_diff;
+	if(year_diff) abs_date = 1;
+	abs_date = (year_diff - 1) / 4 + 365 * year_diff;
 
 	for(int i=0;i<month-1;i++){
-		if(i == 1 && leap_year() ) absolute_date++;
-		absolute_date += months_length[i];
+		if(i == 1 && leap_year() ) abs_date++;
+		abs_date += months_length[i];
 	}
-	absolute_date += day;
+	abs_date += day;
 }
 
 void Calendar::set_month_length(){
@@ -49,7 +78,7 @@ bool Calendar::leap_year(){
 }
 
 int Calendar::get_weekday(){
-	int weekday = (absolute_date + start_weekday) % 7;
+	int weekday = (abs_date + start_weekday) % 7;
 	return weekday;
 }
 
@@ -58,9 +87,16 @@ int Calendar::get_month_length(){
 }
 
 int Calendar::get_abs_date(){
-	return absolute_date;
+	return abs_date;
 }
 
 int Calendar::get_prev_m_len(){
 	return prev_month_length;
+}
+
+std::string Calendar::get_date(){
+	std::string date;
+	std::cout << "oi" << std::endl;
+	date = std::to_string(day) + "/" + std::to_string(month) + "/" + std::to_string(year);
+	return date;
 }
