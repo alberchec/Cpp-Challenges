@@ -80,7 +80,9 @@ int main(){
 		days_div += temp;
 
 		n++;
-		if(n == 7 && date.get_month() <= month) n = 0;
+		if(n != 7){}
+		else if(date.get_month() != month){}
+		else if(date.get_day() != date.get_month_length() ) n = 0;
 		date++;
 	}
 
