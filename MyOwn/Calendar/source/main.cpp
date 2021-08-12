@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "calendar.h"
+#include "date.h"
 #include "/Users/alberto/Desktop/Cpp-Challenges/MyOwn/Format_string/format_string.h"
 
 using namespace std;
@@ -60,16 +60,16 @@ int main(){
 	//----------------------------------------------------------------//
 	//ADD DAY BLOCKS TO HTML FILE
 
-	Calendar cal(1,month,year);
+	Date date(1,month,year);
 	string days_div = "";
 	const string div_template = "<div class=\"{}\">{}</div>";
 
-	int weekday = cal.get_weekday();
+	int weekday = date.get_weekday();
 
 	//Add previous month days
 	
-	Calendar cal2(cal.get_abs_date() - weekday);
-	int day_prev_month = cal2.get_day();
+	Date date2(date.get_abs_date() - weekday);
+	int day_prev_month = date2.get_day();
 
 	for(int i=0;i<weekday;i++){
 		string class_content = "day day_other_month";
@@ -85,7 +85,7 @@ int main(){
 
 	//Add current month days
 	
-	int m_len = cal.get_month_length();
+	int m_len = date.get_month_length();
 
 	for(int i=weekday;i<m_len+weekday;i++){
 		string class_content = "day";
