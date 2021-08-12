@@ -16,7 +16,7 @@ p{
 	width: 95px;
 	text-align: center;
 	margin-left: -1px;
-	border: 1px solid #a55;
+	border: 1px solid #aaa;
 }
 .day{
 	font-family: arial;
@@ -27,22 +27,29 @@ p{
 	height: 95px;
 	margin-left: -1px;
 	margin-top: -1px;
-	border:  1px solid #a55;
+	border:  1px solid #aaa;
 }
 .special_day{
 	color: red;
 }
 .day_other_month{
-	/*color: #0005;*/
 	opacity: 0.2;
+	background-color: #ccc;
 }
-.feriados{
+.commented_days{
+	display: inline-block;
+	width: 665px;
+	margin-top: 20px;
+}
+.commented_days p{
+	float: left;
+	width: auto;
+	padding-right: 50px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+.obs{
 	clear: both;
-	height: 50px;
-	padding-top: 20px;
-}
-.aniversarios{
-	height: 50px;
 }
 .linhas{
 	width: 650px;
