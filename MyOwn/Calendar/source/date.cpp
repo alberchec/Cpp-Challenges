@@ -54,6 +54,11 @@ void Date::set_date(){
 	day = abs_date;
 }
 
+void Date::set_date(int abs){
+	abs_date = abs;
+	set_date();
+}
+
 void Date::set_month_length(){
 	bool leap = leap_year();
 
@@ -102,4 +107,11 @@ std::string Date::get_date(){
 
 int Date::get_day(){
 	return day;
+}
+
+Date& operator + (Date& date, int add){
+	int abs_date = date.get_abs_date();
+	abs_date += add;
+	date.set_date(abs_date);
+	return date;
 }

@@ -27,6 +27,9 @@ public:
 	int get_weekday();
 	int get_month_length();
 	std::string get_date();
+	void set_date(int);
 };
+
+Date& operator + (Date&,int);
 
 #endif
