@@ -65,9 +65,27 @@ int main(){
 	const string div_template = "<div class=\"{}\">{}</div>";
 
 	int weekday = date.get_weekday();
+	date -= weekday;
+	
+	int n = 0;
+	while(n < 7){
+		string class_content = "day";
+		if(!n) class_content += " special_day";
+		if(date.get_month() != month) class_content += " day_other_month";
+        //std::cout << date.get_month() << std::endl;
+		string content = to_string(date.get_day() );
+
+		string temp = div_template;
+		format_string(temp,class_content,content);
+		days_div += temp;
+
+		n++;
+		if(n == 7 && date.get_month() <= month) n = 0;
+		date++;
+	}
 
 	//Add previous month days
-	
+	/*
 	Date date2(date.get_abs_date() - weekday);
 	int day_prev_month = date2.get_day();
 
@@ -114,7 +132,7 @@ int main(){
 
 		days_div += temp;
 	}
-
+    */
 	//----------------------------------------------------------------//
 	//----------------------------------------------------------------//
 	//----------------------------------------------------------------//
