@@ -140,3 +140,17 @@ Date& operator -= (Date& date, int subtract){
 	date.set_date(abs_date);
 	return date;
 }
+
+Date& operator ++ (Date& date, int){
+	int abs_date = date.get_abs_date();
+	abs_date++;
+	date.set_date(abs_date);
+	return date;
+}
+
+Date& operator -- (Date& date, int){
+	int abs_date = date.get_abs_date();
+	abs_date--;
+	date.set_date(abs_date);
+	return date;
+}
