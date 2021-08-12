@@ -13,12 +13,15 @@ Date::Date(int abs_date) : abs_date(abs_date) {
 
 void Date::set_abs_date(){
 	abs_date = 0;
-	int year_diff = year - start_year;
-	if(year_diff) abs_date = 1;
-	abs_date += (year_diff - 1) / 4 + 365 * year_diff;
+	int year_ = start_year;
+	while(year_ < year){
+		if(leap_year(year_) ) abs_date += 366;
+		else			abs_date += 365;
+		year_++;
+	}
 
 	for(int i=0;i<month-1;i++){
-		if(i == 1 && leap_year() ) abs_date++;
+		if(i == 1 && leap_year(year) ) abs_date++;
 		abs_date += months_length[i];
 	}
 	abs_date += day;
@@ -31,7 +34,7 @@ void Date::set_date(){
 	int absolute_date = abs_date;
 
 	while(absolute_date > 365){
-		if(!leap_year() ){
+		if(!leap_year(year) ){
 			year++;
 			absolute_date -= 365; 
 		}else if(absolute_date > 366){
@@ -61,7 +64,7 @@ void Date::set_date(int abs){
 }
 
 void Date::set_month_length(){
-	bool leap = leap_year();
+	bool leap = leap_year(year);
 
 	if(month != 2){
 		month_length = months_length[month - 1];
@@ -73,12 +76,12 @@ void Date::set_month_length(){
 
 }
 
-bool Date::leap_year(){
+bool Date::leap_year(int y){
 	bool leap = false;
 
-	if(year % 4) 		leap = false;
-	else if(year % 100) leap = true;
-	else if(year % 400) leap = false;
+	if(y % 4) 		leap = false;
+	else if(y % 100) leap = true;
+	else if(y % 400) leap = false;
 	else				leap = true;
 
 	return leap;	
