@@ -9,6 +9,7 @@ private:
 	struct Special_dates_info{
 		int day;
 		int month;
+		bool holiday;
 		string text;
 		bool operator < (const Special_dates_info& b) const {
 			if(month > b.month) return false;
@@ -18,7 +19,7 @@ private:
 	};
 	vector<Special_dates_info> v_sd;
 
-	void get_data(std::ifstream& input){
+	void fetch_data(std::ifstream& input, bool holiday){
 		string data;
 		
 		while(getline(input,data) ){
@@ -44,6 +45,7 @@ private:
 			sd.day = day;
 			sd.month = month;
 			sd.text = text;
+			sd.holiday = holiday;
 			v_sd.push_back(sd);
 		}
 	}
@@ -54,7 +56,15 @@ public:
 			cout << "holidays.txt not found!\n";
 			exit(EXIT_SUCCESS);
 		}
-		get_data(input);
+		fetch_data(input,1);
+		input.close();
+
+		input.open("relevant_dates.txt");
+		if(!input.is_open() ){
+			cout << "relevant_dates.txt not found!\n";
+			exit(EXIT_SUCCESS);
+		}
+		fetch_data(input,0);
 		input.close();
 
 		input.open("birthdays.txt");
@@ -62,7 +72,7 @@ public:
 			cout << "birthdays.txt not found!\n";
 			exit(EXIT_SUCCESS);
 		}
-		get_data(input);
+		fetch_data(input,0);
 		input.close();
 
 		std::sort(v_sd.begin(),v_sd.end() );
