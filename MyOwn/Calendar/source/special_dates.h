@@ -6,19 +6,20 @@
 #include <vector>
 #include <fstream>
 
+struct Special_dates_info{
+	int day;
+	int month;
+	bool holiday;
+	std::string text;
+	bool operator < (const Special_dates_info& b) const {
+		if(month > b.month) return false;
+		if(month == b.month && day >= b.day) return false;
+		return true;
+	}
+};
+
 class Special_dates{
 private:
-	struct Special_dates_info{
-		int day;
-		int month;
-		bool holiday;
-		std::string text;
-		bool operator < (const Special_dates_info& b) const {
-			if(month > b.month) return false;
-			if(month == b.month && day >= b.day) return false;
-			return true;
-		}
-	};
 	std::vector<Special_dates_info> v_sd;
 
 	void fetch_data(std::string file_name){
@@ -93,6 +94,16 @@ public:
 		if(holiday) return 2;
 		if(other_dates) return 1;
 		return 0;
+	}
+	std::vector<Special_dates_info> match_info(int day,int month){
+		std::vector<Special_dates_info> v;
+		for(int i=0;i<v_sd.size();i++){
+			if(v_sd[i].month != month) continue;
+			if(v_sd[i].day == day) {
+				v.push_back(v_sd[i]);
+			}
+		}
+		return v;
 	}
 };
 
