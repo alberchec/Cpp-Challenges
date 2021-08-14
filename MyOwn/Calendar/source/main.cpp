@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "date.h"
+#include "special_dates.h"
 #include "/Users/alberto/Desktop/Cpp-Challenges/MyOwn/Format_string/format_string.h"
 
 using namespace std;
@@ -62,18 +63,27 @@ int main(){
 
 	Date date(1,month,year);
 	string days_div = "";
-	const string div_template = "<div class=\"{}\">{}</div>";
+	string div_template = "<div class=\"{}\">{}</div>";
+	Special_dates sd;
 
 	int weekday = date.get_weekday();
+	int month_length = date.get_month_length();
 	date -= weekday;
 	
 	int n = 0;
 	while(n < 7){
+		int day_ = date.get_day();
+		int month_ = date.get_month();
+		int day_type = sd.match(day_,month_);
 		string class_content = "day";
+		
 		if(!n) class_content += " special_day";
-		if(date.get_month() != month) class_content += " day_other_month";
+		else if(day_type > 1) class_content += " special_day";
+		if(month_ != month) class_content += " day_other_month";
 
-		string content = to_string(date.get_day() );
+		string content = "";
+		if(day_type == 1 || day_type == 3) content = "*";
+		content += to_string(day_);
 
 		string temp = div_template;
 		format_string(temp,class_content,content);
@@ -81,10 +91,22 @@ int main(){
 
 		n++;
 		if(n != 7){}
-		else if(date.get_month() != month){}
-		else if(date.get_day() != date.get_month_length() ) n = 0;
+		else if(month_ != month){}
+		else if(day_ != month_length ) n = 0;
 		date++;
 	}
+
+	//----------------------------------------------------------------//
+	//----------------------------------------------------------------//
+	//----------------------------------------------------------------//
+	//ADD SPECIAL DATES BLOCKS TO HTML FILE
+
+	/*div_template = "<p class=\"{}\"><b>{}</b> - {}</p>"
+	for(int i=1;i<month_length;i++){
+
+	}*/
+
+
 
 	//----------------------------------------------------------------//
 	//----------------------------------------------------------------//
