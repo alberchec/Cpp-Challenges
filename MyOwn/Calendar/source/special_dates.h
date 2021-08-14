@@ -1,8 +1,10 @@
+#ifndef SPECIAL_DATES
+#define SPECIAL_DATES
+
 #include <iostream>
 #include <sstream>
 #include <vector>
 #include <fstream>
-using namespace std;
 
 class Special_dates{
 private:
@@ -10,19 +12,19 @@ private:
 		int day;
 		int month;
 		bool holiday;
-		string text;
+		std::string text;
 		bool operator < (const Special_dates_info& b) const {
 			if(month > b.month) return false;
 			if(month == b.month && day >= b.day) return false;
 			return true;
 		}
 	};
-	vector<Special_dates_info> v_sd;
+	std::vector<Special_dates_info> v_sd;
 
 	void fetch_data(std::string file_name){
-		ifstream input(file_name);
+		std::ifstream input(file_name);
 		if(!input.is_open() ){
-			cout << file_name << " not found!\n";
+			std::cout << file_name << " not found!\n";
 			exit(EXIT_SUCCESS);
 		}
 
@@ -31,12 +33,12 @@ private:
 			holiday = true;
 		}
 
-		string data;
+		std::string data;
 		
 		while(getline(input,data) ){
 			int day,month;
-			string text;
-			stringstream ss;
+			std::string text;
+			std::stringstream ss;
 			
 			ss << data;
 			ss >> day;
@@ -71,10 +73,10 @@ public:
 	}
 	void display_data(){
 		for(int i=0;i<v_sd.size();i++){
-			cout << v_sd[i].day << '/';
-			cout << v_sd[i].month << " - ";
-			cout << v_sd[i].text << " - ";
-			cout << v_sd[i].holiday << endl;
+			std::cout << v_sd[i].day << '/';
+			std::cout << v_sd[i].month << " - ";
+			std::cout << v_sd[i].text << " - ";
+			std::cout << v_sd[i].holiday << std::endl;
 		}
 	}
 	int match(int day,int month){ //0 for not special date, 1 for birthdays or relevant_dates and 2 for holidays
@@ -88,12 +90,4 @@ public:
 	}
 };
 
-
-
-int main(){
-	Special_dates sd;
-
-	//sd.display_data();
-	cout << sd.match(22,6) << endl;
-
-}
+#endif
