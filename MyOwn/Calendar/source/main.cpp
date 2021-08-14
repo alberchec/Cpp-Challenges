@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "date.h"
 #include "special_dates.h"
 #include "/Users/alberto/Desktop/Cpp-Challenges/MyOwn/Format_string/format_string.h"
@@ -101,11 +102,20 @@ int main(){
 	//----------------------------------------------------------------//
 	//ADD SPECIAL DATES BLOCKS TO HTML FILE
 
-	/*div_template = "<p class=\"{}\"><b>{}</b> - {}</p>"
-	for(int i=1;i<month_length;i++){
+	string special_dates_div = "";
+	div_template = "<p class=\"{}\"><b>{}</b> - {}</p>";
 
-	}*/
-
+	for(int i=1;i<=month_length;i++){
+		vector<Special_dates_info> v = sd.match_info(i,month);
+		for(int j=0;j<v.size();j++){
+			string temp = div_template;
+			string holiday = "";
+			if(v[j].holiday) holiday = "special_day";
+			string day_ = to_string(v[j].day);
+			format_string(temp,holiday,day_,v[j].text);
+			special_dates_div += temp;
+		}
+	}
 
 
 	//----------------------------------------------------------------//
@@ -115,6 +125,9 @@ int main(){
 
 	pos = calendar_html.find("/--Replace_with_days--/");
 	calendar_html.replace(pos,23,days_div);
+
+	pos = calendar_html.find("/--Replace_with_commented_days--/");
+	calendar_html.replace(pos,33,special_dates_div);
 
 	output << calendar_html;
 	output.close();
