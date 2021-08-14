@@ -77,6 +77,15 @@ public:
 			cout << v_sd[i].holiday << endl;
 		}
 	}
+	int match(int day,int month){ //0 for not special date, 1 for birthdays or relevant_dates and 2 for holidays
+		for(int i=0;i<v_sd.size();i++){
+			if(v_sd[i].month != month) continue;
+			if(v_sd[i].day != day) continue;
+			if(v_sd[i].holiday) return 2;
+			else return 1;
+		}
+		return 0;
+	}
 };
 
 
@@ -84,5 +93,7 @@ public:
 int main(){
 	Special_dates sd;
 
-	sd.display_data();
+	//sd.display_data();
+	cout << sd.match(22,6) << endl;
+
 }
