@@ -79,13 +79,19 @@ public:
 			std::cout << v_sd[i].holiday << std::endl;
 		}
 	}
-	int match(int day,int month){ //0 for not special date, 1 for birthdays or relevant_dates and 2 for holidays
+	int match(int day,int month){ //0 for not special date, 1 for birthdays or relevant_dates, 2 for holidays and 3 for holidays with birthdates
+		bool holiday = false;
+		bool other_dates = false;
 		for(int i=0;i<v_sd.size();i++){
 			if(v_sd[i].month != month) continue;
 			if(v_sd[i].day != day) continue;
-			if(v_sd[i].holiday) return 2;
-			else return 1;
+			if(v_sd[i].holiday) holiday = true;
+			else other_dates = true;
 		}
+		
+		if(holiday && other_dates) return 3;
+		if(holiday) return 2;
+		if(other_dates) return 1;
 		return 0;
 	}
 };
