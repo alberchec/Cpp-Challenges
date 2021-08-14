@@ -19,7 +19,18 @@ private:
 	};
 	vector<Special_dates_info> v_sd;
 
-	void fetch_data(std::ifstream& input, bool holiday){
+	void fetch_data(std::string file_name){
+		ifstream input(file_name);
+		if(!input.is_open() ){
+			cout << file_name << " not found!\n";
+			exit(EXIT_SUCCESS);
+		}
+
+		bool holiday = false;
+		if(file_name == "holidays.txt"){
+			holiday = true;
+		}
+
 		string data;
 		
 		while(getline(input,data) ){
@@ -48,32 +59,13 @@ private:
 			sd.holiday = holiday;
 			v_sd.push_back(sd);
 		}
+		input.close();
 	}
 public:
 	Special_dates(){
-		ifstream input("holidays.txt");
-		if(!input.is_open() ){
-			cout << "holidays.txt not found!\n";
-			exit(EXIT_SUCCESS);
-		}
-		fetch_data(input,1);
-		input.close();
-
-		input.open("relevant_dates.txt");
-		if(!input.is_open() ){
-			cout << "relevant_dates.txt not found!\n";
-			exit(EXIT_SUCCESS);
-		}
-		fetch_data(input,0);
-		input.close();
-
-		input.open("birthdays.txt");
-		if(!input.is_open() ){
-			cout << "birthdays.txt not found!\n";
-			exit(EXIT_SUCCESS);
-		}
-		fetch_data(input,0);
-		input.close();
+		fetch_data("holidays.txt");
+		fetch_data("relevant_dates.txt");
+		fetch_data("birthdays.txt");
 
 		std::sort(v_sd.begin(),v_sd.end() );
 	}
@@ -81,7 +73,8 @@ public:
 		for(int i=0;i<v_sd.size();i++){
 			cout << v_sd[i].day << '/';
 			cout << v_sd[i].month << " - ";
-			cout << v_sd[i].text << endl;
+			cout << v_sd[i].text << " - ";
+			cout << v_sd[i].holiday << endl;
 		}
 	}
 };
