@@ -3,6 +3,7 @@
 #include <vector>
 #include "date.h"
 #include "special_dates.h"
+#include "format_html_chars.h"
 #include "/Users/alberto/Desktop/Cpp-Challenges/MyOwn/Format_string/format_string.h"
 
 using namespace std;
@@ -12,7 +13,7 @@ int main(){
 
 	cout << "Enter the desired month number: ";
 	int month;
-	std::string month_name[12] = {"Janeiro","Fevereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
+	std::string month_name[12] = {"Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
 	cin >> month;
 
 	cout << "Enter the desired year: ";
@@ -128,6 +129,9 @@ int main(){
 
 	pos = calendar_html.find("/--Replace_with_commented_days--/");
 	calendar_html.replace(pos,33,special_dates_div);
+
+	//Format html chars
+	format_html_chars(calendar_html);
 
 	output << calendar_html;
 	output.close();
