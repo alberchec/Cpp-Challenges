@@ -33,7 +33,7 @@ p{
 	color: red;
 }
 .day_other_month{
-	opacity: 0.2;
+	opacity: 0.5;
 	background-color: #ccc;
 }
 .commented_days{
@@ -47,10 +47,14 @@ p{
 	width: auto;
 	padding-right: 50px;
 	margin-top: 0px;
-	margin-bottom: 10px;
+	margin-bottom: 40px;
 }
 .obs{
 	clear: both;
+}
+.obs p{
+	margin: 0;
+	padding: 0;
 }
 .linhas{
 	width: 650px;
