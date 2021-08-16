@@ -3,6 +3,8 @@ p{
 }
 .calendar_month{
 	width: 700px;
+	margin-top: 0px;
+	margin-left: 18px;
 }
 .month{
 	font-family: arial;
