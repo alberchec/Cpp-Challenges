@@ -1,2 +1,6 @@
 #Escape txt files
 *.txt
+
+#Escape html files on this directory only
+*.html
+!source/*.html
