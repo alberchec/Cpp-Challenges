@@ -13,7 +13,9 @@ struct Special_dates_info{
 	std::string text;
 	bool operator < (const Special_dates_info& b) const {
 		if(month > b.month) return false;
-		if(month == b.month && day >= b.day) return false;
+		if(month != b.month){}
+		else if(day > b.day) return false;
+		else if(day == b.day && text.compare(b.text) >= 0) return false;
 		return true;
 	}
 };
