@@ -39,6 +39,8 @@ private:
 		std::string data;
 		
 		while(getline(input,data) ){
+			if(data == "") continue;
+
 			int day,month;
 			std::string text;
 			std::stringstream ss;
