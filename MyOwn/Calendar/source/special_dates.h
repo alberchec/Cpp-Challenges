@@ -49,7 +49,7 @@ private:
 			ss >> day;
 			ss.ignore(256,'/');
 			ss >> month;
-			ss.ignore(256,'-');
+			ss.ignore(256,' ');
 
 			while(ss >> data){
 				if(text == ""){
