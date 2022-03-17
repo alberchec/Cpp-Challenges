@@ -9,3 +9,6 @@ source/main.o : source/main.cpp
 
 clean:
 	rm calendar.out source/date.o source/main.o
+
+clean-html:
+	rm *.html
