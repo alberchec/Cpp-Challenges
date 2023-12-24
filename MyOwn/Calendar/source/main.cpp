@@ -4,7 +4,8 @@
 #include "date.h"
 #include "special_dates.h"
 #include "format_html_chars.h"
-#include "/Users/alberto/Desktop/Cpp-Challenges/MyOwn/Format_string/format_string.h"
+#include "/Users/alberto/Desktop/Arquivos/Programacao/Cpp-Challenges/MyOwn/Format_string/format_string.h"
+#include "moon_phases.h"
 
 using namespace std;
 
@@ -65,8 +66,10 @@ int main(){
 
 	Date date(1,month,year);
 	string days_div = "";
-	string div_template = "<div class=\"{}\">{}</div>";
+	string div_template = "<div class=\"{}\">{}{}</div>";
+	string moon_template = "<br><img width=\"20%\" src=\"{}\"/>";
 	Special_dates sd;
+	Moon_dates md;
 
 	int weekday = date.get_weekday();
 	int month_length = date.get_month_length();
@@ -87,8 +90,16 @@ int main(){
 		if(day_type == 1 || day_type == 3) content = "*";
 		content += to_string(day_);
 
+		string moon_data = "";
+		int moon_phase = md.match(day_,month_);
+		if(moon_phase != 0) moon_data = moon_template;
+		if(moon_phase == 1) format_string(moon_data,"source/nova.png");
+		else if(moon_phase == 2) format_string(moon_data,"source/crescente.png");
+		else if(moon_phase == 3) format_string(moon_data,"source/cheia.png");
+		else if(moon_phase == 4) format_string(moon_data,"source/minguante.png");
+
 		string temp = div_template;
-		format_string(temp,class_content,content);
+		format_string(temp,class_content,content,moon_data);
 		days_div += temp;
 
 		n++;
